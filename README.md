@@ -1,4 +1,4 @@
-# NOA RAG Configuration Assistant
+# NOA is an AI-driven app using RAG (Retrieval-Augmented Generation) for network orchestration and automation
 
 This project integrates a Retrieval-Augmented Generation (RAG) workflow using **SQLite**, **FastAPI**, and **Ollama (Mistral)** to generate intelligent network configurations based on real CLI examples.
 NOA is a FastAPI-based application designed to assist network engineers in generating, reviewing, and pushing CLI configurations to network devices. It integrates with a CLI example database to augment the use an LLM (via Ollama) to generate configurations based on device parameters and features.
