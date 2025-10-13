@@ -1,0 +1,61 @@
+### CISCO_NEXUS_9300_VLAN
+vlan 100
+  name VLAN_100
+
+### CISCO_NEXUS_9300_INTERFACE
+interface Ethernet1/1
+  switchport
+  switchport mode access
+  switchport access vlan 100
+  no shutdown
+
+### CISCO_NEXUS_9300_FEATURE
+feature interface-vlan
+feature l3
+
+### CISCO_NEXUS_9300_SVI
+interface Vlan100
+  ip address 192.168.100.1/24
+  no shutdown
+
+### CISCO_NEXUS_9300_SAVE
+copy running-config startup-config
+
+### CISCO_NEXUS_9300_TRUNK
+interface Ethernet1/2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 100,200,300
+  no shutdown
+
+### CISCO_NEXUS_9300_PORT-CHANNEL
+interface port-channel10
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 100,200,300
+  no shutdown
+
+interface Ethernet1/3
+  channel-group 10 mode active
+  no shutdown
+
+interface Ethernet1/4
+  channel-group 10 mode active
+  no shutdown
+
+### CISCO_NEXUS_9300_OSPF
+feature ospf
+router ospf 1
+  router-id 1.1.1.1
+  network 192.168.100.0/24 area 0
+
+interface Vlan100
+  ip router ospf 1 area 0
+
+### CISCO_NEXUS_9300_BGP
+feature bgp
+router bgp 65001
+  router-id 1.1.1.1
+  neighbor 192.168.100.2 remote-as 65002
+  address-family ipv4 unicast
+    network 192.168.100.0/24

@@ -1,0 +1,266 @@
+### Cisco_Catalyst_9200_SERVICE
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+service call-home
+service unsupported-transceiver
+platform punt-keepalive disable-kernel-core
+
+### Cisco_Catalyst_9200_HOSTNAME
+hostname GA-DUL-3450-SRM-WANSW-C9200CX-01
+
+### Cisco_Catalyst_9200_VRF
+vrf definition Mgmt-vrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+
+### Cisco_Catalyst_9200_AAA
+no aaa new-model
+
+### Cisco_Catalyst_9200_DOMAIN_NAME
+ip domain name PACE.LOCAL
+
+### Cisco_Catalyst_9200_SNOOPING
+ip dhcp snooping vlan 1-1000
+ip dhcp snooping
+ip arp inspection vlan 1-1000
+login on-success log
+
+### Cisco_Catalyst_9200_SYSMTU
+system mtu 9198
+
+### Cisco_Catalyst_9200_SPANNINGTREE
+spanning-tree mode rapid-pvst
+spanning-tree portfast default
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+
+### Cisco_Catalyst_9200_USERS
+username msb privilege 15 secret 9 $9$xeuTOgFKItuG2.$83a1wYzMmL8iBMbVjVkOm4TmqoVbMlFr1ROWdPuzKBQ
+username admin privilege 15 secret 9 $9$KdNIENZNoRakjE$gHmv/5ahuMV9nUpkvn1Ju7IgFZtTBwE3ImUKK7lkALw
+crypto engine compliance shield disable
+
+### Cisco_Catalyst_9200_VLAN
+vlan 3967
+ name Port-Parking
+
+### Cisco_Catalyst_9200_CLASSMAPS
+class-map match-any system-cpp-police-ewlc-control
+  description EWLC Control 
+class-map match-any system-cpp-police-topology-control
+  description Topology control
+class-map match-any system-cpp-police-sw-forward
+  description Sw forwarding, L2 LVX data packets, LOGGING, Transit Traffic
+class-map match-any system-cpp-default
+  description EWLC data, Inter FED Traffic 
+class-map match-any system-cpp-police-sys-data
+  description Openflow, Exception, EGR Exception, NFL Sampled Data, RPF Failed
+class-map match-any system-cpp-police-punt-webauth
+  description Punt Webauth
+class-map match-any system-cpp-police-l2lvx-control
+  description L2 LVX control packets
+class-map match-any system-cpp-police-forus
+  description Forus Address resolution and Forus traffic
+class-map match-any system-cpp-police-multicast-end-station
+  description MCAST END STATION
+class-map match-any system-cpp-police-high-rate-app
+  description High Rate Applications 
+class-map match-any system-cpp-police-multicast
+  description MCAST Data
+class-map match-any system-cpp-police-l2-control
+  description L2 control
+class-map match-any system-cpp-police-dot1x-auth
+  description DOT1X Auth
+class-map match-any system-cpp-police-data
+  description ICMP redirect, ICMP_GEN and BROADCAST
+class-map match-any system-cpp-police-stackwise-virt-control
+  description Stackwise Virtual OOB
+class-map match-any non-client-nrt-class
+class-map match-any system-cpp-police-routing-control
+  description Routing control and Low Latency
+class-map match-any system-cpp-police-protocol-snooping
+  description Protocol snooping
+class-map match-any system-cpp-police-dhcp-snooping
+  description DHCP snooping
+class-map match-any system-cpp-police-ios-routing
+  description L2 control, Topology control, Routing control, Low Latency
+class-map match-any system-cpp-police-system-critical
+  description System Critical and Gold Pkt
+class-map match-any system-cpp-police-ios-feature
+  description ICMPGEN,BROADCAST,ICMP,L2LVXCntrl,ProtoSnoop,PuntWebauth,MCASTData,Transit,DOT1XAuth,Swfwd,LOGGING,L2LVXData,ForusTraffic,ForusARP,McastEndStn,Openflow,Exception,EGRExcption,NflSampled,RpfFailed
+
+### Cisco_Catalyst_9200_POLICYMAPS
+policy-map system-cpp-policy
+
+### Cisco_Catalyst_9200_INTERFACE
+interface GigabitEthernet1/0/1
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface GigabitEthernet1/0/2
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface GigabitEthernet1/0/3
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface GigabitEthernet1/0/4
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface GigabitEthernet1/0/5
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface GigabitEthernet1/0/6
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface GigabitEthernet1/0/7
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface GigabitEthernet1/0/8
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface GigabitEthernet1/0/9
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface GigabitEthernet1/0/10
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface GigabitEthernet1/0/11
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface GigabitEthernet1/0/12
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface GigabitEthernet1/1/1
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface GigabitEthernet1/1/2
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface TenGigabitEthernet1/1/3
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface TenGigabitEthernet1/1/4
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+!
+interface GigabitEthernet1/1/5
+ description User Access Port - Parked
+ switchport access vlan 3967
+ switchport mode access
+ mtu 9198
+
+### Cisco_Catalyst_9200_SVI
+interface Vlan1
+ no ip address
+interface vlan 31
+ ip address 10.10.1.1 255.255.255.0
+ description VLAN 31 - Phones
+
+### Cisco_Catalyst_9200_SERVERS
+no ip http server
+no ip http secure-server
+ip forward-protocol nd
+ip ssh authentication-retries 4
+ip ssh version 2
+
+### Cisco_Catalyst_9200_SNMP
+snmp-server community opman_cisco_ios RO 1
+
+### Cisco_Catalyst_9200_CONTROLPLANE
+control-plane
+ service-policy input system-cpp-policy
+
+### Cisco_Catalyst_9200_BANNEREXEC
+banner exec ^CCC
+
+
+BE CAREFUL!! If you dont know what youre doing - GET HELP!!
+
+####           ITS NOT WORTH IT!!          ####
+
+
+^C
+
+### Cisco_Catalyst_9200_BANNERMOTD
+banner motd ^CCC
+
+
+####   Property of Pace-O-Matic, actively monitored!!!    ####
+
+        #### Intruders will be prosecuted!!! #####
+
+
+STAY OFF!!
+
+^C
+
+### Cisco_Catalyst_9200_CONSOLE
+line con 0
+ privilege level 15
+ login local
+ stopbits 1
+### Cisco_Catalyst_9200_AUX
+line aux 0
+### Cisco_Catalyst_9200_VTY
+line vty 0 4
+ privilege level 15
+ login local
+ transport input ssh
+line vty 5 15
+ privilege level 15
+ login local
+ transport input ssh
+
+### Cisco_Catalyst_9200_NTP
+ntp server 192.168.16.32
+ntp server 192.168.16.31

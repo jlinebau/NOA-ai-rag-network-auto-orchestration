@@ -1,0 +1,50 @@
+curl -X POST http://127.0.0.1:8000/parse_pdf/ \
+  -F "vendor=cisco" \
+  -F "file=@vendor_pdfs/cisco.pdf"
+
+
+curl -X POST http://localhost:8000/generate_config -F "vendor=cisco" -F "request=configure dot1x with fallback to local"
+
+
+
+
+curl -X POST http://localhost:8000/generate_config -F "vendor=cisco" -F "request=aaa authentication dot1x"
+
+
+
+
+from parsers.cisco_parser import CiscoParser
+
+parser = CiscoParser("test.txt")
+for cmd in list(parser.commands.keys())[:10]:
+    print(cmd)
+	
+	
+upoad pdf
+curl -X POST http://localhost:8000/upload_pdf/ -F "vendor=cisco" -F "file=@Cisco_Command_Reference.pdf"
+  
+  
+curl -X POST http://localhost:8000/generate_config/ -F "vendor=cisco" -F "request=configure dot1x with fallback to local"
+
+
+
+curl -X POST http://localhost:8000/generate_config -F "vendor=cisco" -F "model=nexus 93180" -F "request=set interface 12 to access vlan 100"
+
+
+
+testing the updated rag_api.py with full fuzzy matching support.
+
+
+administrator@3450prodnoallm:~/noa_assistant$ curl -X POST http://localhost:8000/webhook -H "Content-Type: application/json" -d '{
+  "device": {
+    "vendor": "Fortinet",
+    "model": "FG100F",
+    "os_version": "FORTIOS7.2"
+  },
+  "feature": "interface",
+  "parameters": "port1 assign ip address 192.168.1.1"
+}'
+
+sqlite3 staging_queue.db
+sqlite> ALTER TABLE staging_queue ADD COLUMN device_ip TEXT;
+sqlite> ALTER TABLE staging_queue ADD COLUMN device_name TEXT;

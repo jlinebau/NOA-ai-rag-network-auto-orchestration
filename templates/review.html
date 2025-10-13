@@ -1,0 +1,23 @@
+
+<h1>NOA Config Review</h1>
+<h2>Pending Configuration Requests</h2>
+
+<ul>
+  {% for item in items %}
+    <li>
+      <a href="/review/{{ item['id'] }}">
+        Request #{{ item['id'] }} - {{ item['vendor'] }} {{ item['model'] }} ({{ item['feature'] }})
+      </a><br>
+      Device: {{ item['device_name'] }} ({{ item['device_ip'] }})<br>
+      Status: <span style="color:
+        {% if item['status'] == 'pushed' %}green
+        {% elif item['status'] == 'error' %}red
+        {% elif item['status'] == 'pending' %}orange
+        {% elif item['status'] == 'rejected' %}gray
+        {% else %}black
+        {% endif %};">
+        {{ item['status'] }}
+      </span>
+    </li>
+  {% endfor %}
+</ul>

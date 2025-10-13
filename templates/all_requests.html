@@ -1,0 +1,37 @@
+
+<h1>All Configuration Requests</h1>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr>
+    <th>ID</th>
+    <th>Vendor</th>
+    <th>Model</th>
+    <th>OS Version</th>
+    <th>Feature</th>
+    <th>Device Name</th>
+    <th>Device IP</th>
+    <th>Status</th>
+    <th>Created At</th>
+  </tr>
+  {% for item in items %}
+  <tr>
+    <td><a href="/review/{{ item['id'] }}">{{ item['id'] }}</a></td>
+    <td>{{ item['vendor'] }}</td>
+    <td>{{ item['model'] }}</td>
+    <td>{{ item['os_version'] }}</td>
+    <td>{{ item['feature'] }}</td>
+    <td>{{ item['device_name'] }}</td>
+    <td>{{ item['device_ip'] }}</td>
+    <td><span style="color:
+      {% if item['status'] == 'pushed' %}green
+      {% elif item['status'] == 'error' %}red
+      {% elif item['status'] == 'pending' %}orange
+      {% elif item['status'] == 'rejected' %}gray
+      {% else %}black
+      {% endif %};">
+      {{ item['status'] }}
+    </span></td>
+    <td>{{ item['created_at'] }}</td>
+  </tr>
+  {% endfor %}
+</table>

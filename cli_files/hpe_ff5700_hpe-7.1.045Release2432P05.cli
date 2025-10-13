@@ -1,0 +1,39 @@
+### HPE_FF5700_VLAN
+vlan 10
+ name Users
+ description User VLAN
+ quit
+
+vlan 20
+ name Guest
+ description Guest VLAN
+ quit
+
+### HPE_FF5700_INTERFACE
+interface GigabitEthernet1/0/1
+ port link-type access
+ port access vlan 10
+ description User Port
+ quit
+
+interface GigabitEthernet1/0/2
+ port link-type trunk
+ port trunk permit vlan 10,20
+ description Uplink Port
+ quit
+
+### HPE_FF5700_OSPF
+ospf
+ area 0
+  network 192.168.1.0 0.0.0.255
+  network 192.168.2.0 0.0.0.255
+ quit
+
+interface Vlan10
+ ip address 192.168.1.1 255.255.255.0
+ ospf enable
+ quit
+
+### HPE_FF5700_STATIC_ROUTE
+ip route-static 0.0.0.0 0.0.0.0 192.168.1.254
+ip route-static 10.0.0.0 255.255.255.0 192.168.2.254

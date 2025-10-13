@@ -1,0 +1,44 @@
+### Fortinet_FortiGate_VLAN
+config system interface
+    edit "VLAN30"
+        set vdom "root"
+        set ip 192.168.30.1 255.255.255.0
+        set allowaccess ping https ssh snmp
+        set vlanid 30
+        set interface "internal"
+    next
+end
+
+### Fortinet_FortiGate_INTERFACE
+config system interface
+    edit "internal"
+        set vdom "root"
+        set ip 192.168.1.1 255.255.255.0
+        set allowaccess ping https ssh snmp
+        set type physical
+    next
+end
+
+### Fortinet_FortiGate_FIREWALL_POLICY
+config firewall policy
+    edit 1
+        set name "Allow_IoT_to_Internet"
+        set srcintf "VLAN30"
+        set dstintf "wan1"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set nat enable
+    next
+end
+
+### Fortinet_FortiGate_STATIC_ROUTE
+config router static
+    edit 1
+        set dst 0.0.0.0 0.0.0.0
+        set gateway 192.168.30.254
+        set device "VLAN30"
+    next
+end

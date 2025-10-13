@@ -1,0 +1,34 @@
+### Aruba_2930F_VLAN
+vlan 10
+   name "Users"
+   tagged 1/1
+   untagged 1/2-1/24
+   exit
+
+vlan 20
+   name "Guest"
+   untagged 1/25-1/48
+   exit
+
+### Aruba_2930F_INTERFACE
+interface 1/1
+   name "Uplink"
+   speed auto
+   duplex auto
+   exit
+
+interface 1/2
+   name "User Port"
+   speed 1000
+   duplex full
+   exit
+
+### Aruba_2930F_IP_ROUTING
+ip routing
+ip route 0.0.0.0 0.0.0.0 192.168.1.1
+ip route 10.0.0.0 255.255.255.0 192.168.1.2
+
+### Aruba_2930F_SNMP
+snmp-server community "public" operator unrestricted
+snmp-server contact "Network Team"
+snmp-server location "Data Center"
