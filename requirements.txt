@@ -1,2 +1,18 @@
-python-dotenv
 tenacity
+fastapi
+uvicorn
+sqlite3  # Optional: if you're using it directly; otherwise, it's built-in
+sqlalchemy
+pydantic
+netmiko
+paramiko
+requests
+python-dotenv
+ollama  # If you're calling Ollama locally
+langchain  # If still used for chaining or memory
+tiktoken  # For token counting if needed
+scikit-learn  # For weighted logic or similarity scoring
+numpy
+pdfminer.six  # For CLI extraction from vendor manuals
+beautifulsoup4  # If parsing HTML docs
+aiofiles  # For async file handling in FastAPI
