@@ -6,9 +6,6 @@ service call-home
 service unsupported-transceiver
 platform punt-keepalive disable-kernel-core
 
-### Cisco_Catalyst_9200_HOSTNAME
-hostname GA-DUL-3450-SRM-WANSW-C9200CX-01
-
 ### Cisco_Catalyst_9200_VRF
 vrf definition Mgmt-vrf
  !
