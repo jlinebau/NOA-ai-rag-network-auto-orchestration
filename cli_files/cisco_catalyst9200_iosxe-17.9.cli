@@ -37,8 +37,7 @@ spanning-tree portfast bpduguard default
 spanning-tree extend system-id
 
 ### Cisco_Catalyst_9200_USERS
-username msb privilege 15 secret 9 $9$xeuTOgFKItuG2.$83a1wYzMmL8iBMbVjVkOm4TmqoVbMlFr1ROWdPuzKBQ
-username admin privilege 15 secret 9 $9$KdNIENZNoRakjE$gHmv/5ahuMV9nUpkvn1Ju7IgFZtTBwE3ImUKK7lkALw
+username admin privilege 15 secret testme_changeme
 crypto engine compliance shield disable
 
 ### Cisco_Catalyst_9200_VLAN
