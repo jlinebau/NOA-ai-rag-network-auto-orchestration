@@ -37,3 +37,7 @@ FastAPI app that:
 - Sends prompt to Mistral via Ollama
 - Returns generated config
 
+
+### Change the temp passwords - this isnt security heavy yet but there are some basic auth in the routes to keep annoying stuff from happening.  
+
+
